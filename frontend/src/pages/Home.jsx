@@ -1,11 +1,35 @@
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
 
 
+export default function Home() {
+  const endPoint = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+  const [moviesResult, setMoviesResult] = useState([]);
 
-export default function Home(){
-    const {id} = useParams()
-    return( 
+  const options = {
+    method: 'GET', headers: {
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZjUyMjNmMTkzNDBkM2VmMDA5MGE2YWE0YWEwMmU3MCIsInN1YiI6IjY1NjkyOTdiY2Y0OGExMDBlNDY0YzdkZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FDYYKMC4-XZmjDoaBGBePLTjtFK1vnpclehxyPHh6sg",
+      accept: 'application/json'
+    }
+  };
+
+  useEffect(() => {
+    fetch(endPoint, options
+    ).then((response) =>
+      response.json()
+    ).then((data) => setMoviesResult(data.results))
+  }, []);
+
+  return (
     <>
-        <h1>HOMEzinho{id}</h1>
-    </>)
+      {
+        moviesResult.map((movie) => (
+          <>
+            <h1 key={movie}>{movie.title}</h1>
+            <h5 key={movie}>{movie.overview}</h5>
+          </>
+        ))
+      }
+    </>
+  )
 }
+
