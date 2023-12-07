@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-
+import CardMovies from "../components/CardMovies";
 
 export default function Home() {
   const endPoint = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+
   const [moviesResult, setMoviesResult] = useState([]);
 
   const options = {
@@ -20,16 +21,16 @@ export default function Home() {
   }, []);
 
   return (
+
     <>
+      <div className="card_list">
       {
         moviesResult.map((movie) => (
-          <>
-            <h1 key={movie}>{movie.title}</h1>
-            <h5 key={movie}>{movie.overview}</h5>
-          </>
+          <CardMovies key={movie.id} movie={movie} />
         ))
       }
+      </div>
+
     </>
   )
 }
-

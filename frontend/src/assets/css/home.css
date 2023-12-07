@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.card_movies {
+  width: 200px;
+  height: 330px;
+  border: solid 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card_movies img {
+  width: 100%;
+  height: 100%;
+}
+
+.card_movies span {
+  display: flex;
+  justify-content: center;
+}
+
+.card_list {
+  display: flex;
+  flex-wrap: wrap;
+}
